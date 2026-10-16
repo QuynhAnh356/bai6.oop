@@ -46,9 +46,9 @@ public class Main {
 
             // Bước 7: Hiển thị các phiếu trả muộn, chưa trả
             System.out.println("\n7. HIỂN THỊ CÁC PHIẾU TRẢ MUỘN VÀ CHƯA TRẢ:");
-            System.out.println("\nCÁC PHIẾU CÓ THIẾT BỊ TRẢ MUỘN");
+            System.out.println("\nCÁC PHIẾU CÓ THIẾT BỊ TRẢ MUỘN / QUÁ HẠN:");
             for (BorrowingSlip slip : allSlips) {
-                if (slip.calculateTotalLateFee() > 0) {
+                if (slip.isOverdue() || slip.calculateTotalLateFee() > 0) {
                     System.out.println(slip);
                 }
             }

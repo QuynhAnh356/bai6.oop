@@ -87,17 +87,15 @@ public class BorrowItem {
 
     // Kiểm tra xem món đồ này trả có bị trễ hạn hay không
     public boolean isOverdue() {
-        if (returnedDate != null) {
-            return returnedDate.isAfter(dueDate);
-        }
-        // Nếu chưa trả, so sánh với ngày hôm nay
-        return LocalDate.now().isAfter(dueDate);
+        LocalDate compareDate = (returnedDate != null) ? returnedDate : LocalDate.now();
+        return compareDate.isAfter(dueDate);
     }
 
     // Tính số ngày trễ hạn thực tế
     public int getLateDays() {
-        if (returnedDate != null && returnedDate.isAfter(dueDate)) {
-            return (int) ChronoUnit.DAYS.between(dueDate, returnedDate);
+        LocalDate compareDate = (returnedDate != null) ? returnedDate : LocalDate.now();
+        if (compareDate.isAfter(dueDate)) {
+            return (int) ChronoUnit.DAYS.between(dueDate, compareDate);
         }
         return 0;
     }
