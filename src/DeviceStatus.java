@@ -1,5 +1,6 @@
 public enum DeviceStatus {
-    Active,             // Đang hoạt động bình thường
-    UnderMaintenance,   // Đang bảo dưỡng / sửa chữa
+    Available,          // Sẵn sàng cho mượn
+    Borrowed,           // Đang được mượn
+    UnderMaintenance,   // Đang bảo trì
     Retired             // Đã thanh lý
 }

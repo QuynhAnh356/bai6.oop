@@ -28,7 +28,7 @@ public abstract class Device {
         this.name = name.trim();
         this.yearOfUse = yearOfUse;
         this.purchasePrice = purchasePrice;
-        this.status = (status != null) ? status : DeviceStatus.Active;
+        this.status = (status != null) ? status : DeviceStatus.Available;
     }
 
     // Phương thức trừu tượng tính chi phí bảo trì dự kiến trong một năm
