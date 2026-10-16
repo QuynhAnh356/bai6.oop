@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 import java.time.Year;
 
 // Lớp trừu tượng quản lý thông tin thiết bị

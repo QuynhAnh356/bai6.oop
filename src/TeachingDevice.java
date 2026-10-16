@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Lớp trừu tượng quản lý các thiết bị giảng dạy phục vụ mượn - trả
 public abstract class TeachingDevice extends Device {
     protected int maxBorrowDays;

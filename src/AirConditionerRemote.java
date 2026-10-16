@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Thiết bị điều khiển điều hòa
 public class AirConditionerRemote extends TeachingDevice {
 

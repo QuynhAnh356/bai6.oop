@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -162,7 +164,7 @@ public class BorrowingSlip {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("=== PHIẾU MƯỢN [%s] ===\n", slipId));
+        sb.append(String.format("PHIẾU MƯỢN [%s]\n", slipId));
         sb.append(String.format("Người mượn: %s | Phòng: %s | Ngày mượn: %s\n",
                 borrower.getFullName(), teachingRoom, borrowedDate));
         sb.append("Danh sách thiết bị:\n");

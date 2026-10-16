@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Thiết bị Micro giảng dạy
 public class Microphone extends TeachingDevice {
 

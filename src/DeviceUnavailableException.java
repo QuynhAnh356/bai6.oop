@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Phát sinh khi thiết bị không ở trạng thái sẵn sàng (Available)
 public class DeviceUnavailableException extends BorrowingException {
     private final String deviceId;

@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Lớp đại diện cho Trợ giảng mượn thiết bị
 public class TeachingAssistant implements IBorrower {
     private final String borrowerId;

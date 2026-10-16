@@ -1,3 +1,5 @@
+// Mã sinh viên: 202418841
+// Họ tên: Dương Thị Quỳnh Anh
 // Interface đại diện cho đối tượng người mượn thiết bị
 public interface IBorrower {
     // Lấy mã người mượn
