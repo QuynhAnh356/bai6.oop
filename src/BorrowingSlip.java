@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// Lớp quản lý phiếu mượn thiết bị và xử lý giao dịch mượn/trả
+
 public class BorrowingSlip {
-    // Mức phí phạt trả muộn quy định: 50.000 VNĐ / ngày trễ
+  
     public static final double DAILY_LATE_FEE = 50000.0;
 
     private final String slipId;
@@ -53,41 +53,33 @@ public class BorrowingSlip {
         return borrowedDate;
     }
 
-    // Trả về danh sách dạng chỉ đọc để bảo vệ tính đóng gói
     public List<BorrowItem> getItems() {
         return Collections.unmodifiableList(items);
     }
 
-    // Thêm thiết bị vào phiếu mượn, đảm bảo tính nhất quán (Atomic / Transaction Safety)
     public void addDevice(TeachingDevice device, int borrowDays) throws BorrowingException {
-        // 1. Kiểm tra thiết bị không được null
         if (device == null) {
             throw new IllegalArgumentException("Thiết bị không được null.");
         }
 
-        // 2. Kiểm tra số ngày mượn phải dương và không vượt quá giới hạn của thiết bị
         if (borrowDays <= 0 || borrowDays > device.getMaxBorrowDays()) {
             throw new InvalidBorrowPeriodException(device.getDeviceId(), borrowDays, device.getMaxBorrowDays());
         }
 
-        // 3. Kiểm tra thiết bị chưa tồn tại trong phiếu này
         for (BorrowItem item : items) {
             if (item.getDevice().getDeviceId().equalsIgnoreCase(device.getDeviceId())) {
                 throw new DuplicateDeviceException(device.getDeviceId());
             }
         }
 
-        // 4. Kiểm tra người mượn chưa đạt giới hạn số lượng thiết bị cho phép
         if (items.size() >= borrower.getMaximumDevices()) {
             throw new BorrowLimitExceededException(borrower.getBorrowerId(), borrower.getMaximumDevices());
         }
 
-        // 5. Kiểm tra thiết bị phải đang ở trạng thái sẵn sàng (Available)
         if (!device.isAvailable()) {
             throw new DeviceUnavailableException(device.getDeviceId(), device.getStatus());
         }
 
-        // Khi toàn bộ 5 điều kiện hợp lệ mới thực hiện cập nhật hệ thống
         LocalDate dueDate = borrowedDate.plusDays(borrowDays);
         BorrowItem newItem = new BorrowItem(device, borrowedDate, dueDate);
 
@@ -95,13 +87,11 @@ public class BorrowingSlip {
         items.add(newItem);      // Thêm dòng mượn vào phiếu
     }
 
-    // Trả thiết bị và tính phí phạt trễ hạn nếu có
     public double returnDevice(String deviceId, LocalDate returnedDate) throws BorrowingException {
         if (deviceId == null || deviceId.trim().isEmpty()) {
             throw new IllegalArgumentException("Mã thiết bị cần trả không được để trống.");
         }
 
-        // 1. Tìm BorrowItem tương ứng trong phiếu
         BorrowItem targetItem = null;
         for (BorrowItem item : items) {
             if (item.getDevice().getDeviceId().equalsIgnoreCase(deviceId.trim())) {
@@ -110,29 +100,21 @@ public class BorrowingSlip {
             }
         }
 
-        // 2. Không tìm thấy thiết bị trong phiếu
         if (targetItem == null) {
             throw new DeviceNotInSlipException(deviceId.trim());
         }
 
-        // 3. Thiết bị đã được trả trước đó
         if (targetItem.isReturned()) {
             throw new DeviceAlreadyReturnedException(deviceId.trim());
         }
 
-        // 4. Kiểm tra ngày trả không được trước ngày mượn
         if (returnedDate == null || returnedDate.isBefore(borrowedDate)) {
             throw new InvalidReturnDateException(returnedDate, borrowedDate);
         }
 
-        // 5. Ghi nhận trả thiết bị (bên trong hàm này sẽ tự chuyển thiết bị về Available)
         targetItem.returnDevice(returnedDate);
-
-        // 6. Tính phí trễ hạn cho thiết bị này
         return targetItem.getLateDays() * DAILY_LATE_FEE;
     }
-
-    // Tính tổng chi phí phạt trả muộn của toàn bộ thiết bị trong phiếu
     public double calculateTotalLateFee() {
         double totalFee = 0;
         for (BorrowItem item : items) {
@@ -141,7 +123,6 @@ public class BorrowingSlip {
         return totalFee;
     }
 
-    // Kiểm tra xem phiếu có thiết bị nào chưa trả hay không
     public boolean hasUnreturnedItems() {
         for (BorrowItem item : items) {
             if (!item.isReturned()) {
@@ -151,7 +132,6 @@ public class BorrowingSlip {
         return false;
     }
 
-    // Kiểm tra xem phiếu có thiết bị nào đang bị trễ hạn hay không
     public boolean isOverdue() {
         for (BorrowItem item : items) {
             if (item.isOverdue()) {
