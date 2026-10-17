@@ -4,7 +4,6 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
-// Quản lý thông tin phòng học và danh sách thiết bị kết tập trong phòng
 public class ClassRoom {
     private String roomId;
     private String roomName;
@@ -28,7 +27,6 @@ public class ClassRoom {
         this.devices = new ArrayList<>();
     }
 
-    // Thêm thiết bị vào phòng học, không chấp nhận null và không trùng mã
     public void addDevice(Device device) {
         if (device == null) {
             throw new IllegalArgumentException("Thiết bị không được null.");
@@ -39,7 +37,6 @@ public class ClassRoom {
         devices.add(device);
     }
 
-    // Xóa thiết bị khỏi phòng học theo mã thiết bị
     public boolean removeDevice(String deviceId) {
         if (deviceId == null) {
             return false;
@@ -51,7 +48,6 @@ public class ClassRoom {
         return false;
     }
 
-    // Tìm kiếm thiết bị trong phòng học theo mã
     public Device findDevice(String deviceId) {
         if (deviceId == null) {
             return null;
@@ -64,7 +60,6 @@ public class ClassRoom {
         return null;
     }
 
-    // Tính tổng chi phí bảo trì dự kiến trong năm của toàn bộ thiết bị (áp dụng tính đa hình)
     public double calculateAnnualMaintenanceCost() {
         double totalCost = 0;
         for (Device d : devices) {
@@ -73,7 +68,6 @@ public class ClassRoom {
         return totalCost;
     }
 
-    // Lọc danh sách thiết bị cần bảo trì: đang UnderMaintenance hoặc đã dùng trên 5 năm
     public List<Device> getDevicesRequiringMaintenance() {
         List<Device> result = new ArrayList<>();
         int currentYear = Year.now().getValue();
