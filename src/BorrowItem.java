@@ -3,7 +3,6 @@
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-// Quản lý chi tiết việc mượn và trả của một thiết bị cụ thể trong phiếu
 public class BorrowItem {
     private final TeachingDevice device;
     private final LocalDate borrowedDate;
@@ -64,12 +63,10 @@ public class BorrowItem {
         this.toPeriod = toPeriod;
     }
 
-    // Kiểm tra xem thiết bị này đã được trả hay chưa
     public boolean isReturned() {
         return this.returnedDate != null;
     }
 
-    // Ghi nhận trả thiết bị
     public void returnDevice(LocalDate returnedDate) {
         if (isReturned()) {
             throw new IllegalStateException("Thiết bị này đã được trả trước đó.");
@@ -82,16 +79,14 @@ public class BorrowItem {
         }
 
         this.returnedDate = returnedDate;
-        this.device.markAsAvailable(); // Trả xong chuyển thiết bị về trạng thái sẵn sàng
+        this.device.markAsAvailable(); 
     }
 
-    // Kiểm tra xem món đồ này trả có bị trễ hạn hay không
     public boolean isOverdue() {
         LocalDate compareDate = (returnedDate != null) ? returnedDate : LocalDate.now();
         return compareDate.isAfter(dueDate);
     }
 
-    // Tính số ngày trễ hạn thực tế
     public int getLateDays() {
         LocalDate compareDate = (returnedDate != null) ? returnedDate : LocalDate.now();
         if (compareDate.isAfter(dueDate)) {
