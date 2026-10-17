@@ -2,7 +2,6 @@
 // Họ tên: Dương Thị Quỳnh Anh
 import java.time.LocalDate;
 
-// Phát sinh khi ngày trả không hợp lệ (trước ngày mượn)
 public class InvalidReturnDateException extends BorrowingException {
     private final LocalDate returnedDate;
     private final LocalDate borrowedDate;
