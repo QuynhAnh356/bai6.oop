@@ -1,6 +1,6 @@
 // Mã sinh viên: 202418841
 // Họ tên: Dương Thị Quỳnh Anh
-// Phát sinh khi người mượn đã đạt số lượng thiết bị tối đa cho phép
+
 public class BorrowLimitExceededException extends BorrowingException {
     private final String borrowerId;
     private final int maximumDevices;
