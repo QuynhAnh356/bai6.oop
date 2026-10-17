@@ -1,6 +1,5 @@
 // Mã sinh viên: 202418841
 // Họ tên: Dương Thị Quỳnh Anh
-// Phát sinh khi số ngày mượn không hợp lệ hoặc vượt quá giới hạn của thiết bị
 public class InvalidBorrowPeriodException extends BorrowingException {
     private final String deviceId;
     private final int requestedDays;
