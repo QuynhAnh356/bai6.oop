@@ -1,6 +1,6 @@
 // Mã sinh viên: 202418841
 // Họ tên: Dương Thị Quỳnh Anh
-// Lớp đại diện cho Giảng viên mượn thiết bị
+
 public class Lecturer implements IBorrower {
     private final String borrowerId;
     private final String fullName;
@@ -27,7 +27,6 @@ public class Lecturer implements IBorrower {
         return fullName;
     }
 
-    // Giảng viên được mượn tối đa 3 thiết bị trên một phiếu
     @Override
     public int getMaximumDevices() {
         return 3;
