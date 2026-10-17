@@ -1,6 +1,5 @@
 // Mã sinh viên: 202418841
 // Họ tên: Dương Thị Quỳnh Anh
-// Phát sinh khi cùng một thiết bị được thêm hai lần vào cùng một phiếu
 public class DuplicateDeviceException extends BorrowingException {
     private final String deviceId;
 
